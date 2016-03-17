@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Jquery | HTML | PHP</title>
+</head>
+<body>
+
+
+<form action="ajax.php" method="POST" name="formlogin" id="formlogin">
+	<label for="">
+		<span>Nome</span>
+		<input type="text" name="nome" id="nome">
+	</label>
+	<label for="">
+		<span>Senha</span>
+		<input type="password" name="senha" id="senha">
+	</label>
+	<input type="submit" value="Logar">
+</form>
+<div id="dados" style="margin-top: 10px;">
+	<h1>Dados subimetidos</h1>
+	<input type="text" disabled="disabled" name="mnome" id="mnome">
+	<input type="text" disabled="disabled" name="msenha" id="msenha">
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.1.js" integrity="sha256-VuhDpmsr9xiKwvTIHfYWCIQ84US9WqZsLfR4P7qF6O8=" crossorigin="anonymous"></script>
+
+<script>
+
+(function ($) {
+	
+	$('#formlogin').submit(function (e) {
+		e.preventDefault();
+
+		$.ajax({
+
+			type : 'POST',
+			url  : 'ajax.php',
+			data :{
+				nome:$('#nome').val(), 
+				senha:$('#senha').val()
+			}
+
+		}).done(function (msg) {
+			console.log(msg);
+		});
+
+	});
+
+	
+})(jQuery);
+
+</script>
+</body>
+</html>
